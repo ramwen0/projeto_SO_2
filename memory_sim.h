@@ -6,8 +6,8 @@
 #include <string.h>
 #include <stdbool.h>
 
-#define MEMORY_SIZE 21 * 1024     // 21KB
-#define PAGE_SIZE 3 * 1024        // 3KB
+#define MEMORY_SIZE (21 * 1024)     // 21KB
+#define PAGE_SIZE (3 * 1024)        // 3KB
 #define MAX_FRAMES (MEMORY_SIZE / PAGE_SIZE)  // 7 frames
 #define MAX_PROCESSES 20
 #define MAX_PAGES_PER_PROCESS 4   // 11KB / 3KB = 3.666 → 4 pages max
@@ -55,8 +55,8 @@ void initialize_memory();
 void initialize_processes(const int mem_sizes[], int count);
 // > Paging and frame loading < //
 int find_free_frame();
-int find_victim_fifo();
-int find_victim_lru();
+int find_victim_fifo_for_process(int process_id);
+int find_victim_lru_for_process(int process_id);
 void load_page(const int frame, const int process_id, const int page_num);
 void free_process_pages(const int process_id);
 int allocate_page(const int process_id, const int address, const bool fifo);
